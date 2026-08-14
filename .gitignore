@@ -4,9 +4,9 @@ state/
 npm/node_modules/
 npm/package-lock.json
 
-# Understory — cloned source + live memory bundle (remove understory-memory/ line to commit shared memory)
-understory/
-understory-memory/
+# Understory — cloned source + live memory bundle (paths relative to installed .pi/)
+/understory/
+/understory-memory/
 
 # Local overrides
 trust.json
