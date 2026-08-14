@@ -432,7 +432,9 @@ EOF
   fi
 
   cat <<EOF
+  • AGENTS.md created in project root (or already present — not overwritten)
   • Optional: add project-specific skills under .pi/skills/
+  • Re-generate: PI_AGENTS_FORCE=1 bash .pi/scripts/generate-agents-md.sh "\$PWD" .pi
 
 Skills in .pi/skills/: $(ls -1 "$target_dir/skills" 2>/dev/null | tr '\n' ' ' || echo —)
 EOF
@@ -476,6 +478,15 @@ phase2_install() {
     setup_understory "$target_dir" "$project_root"
   else
     log "Understory: пропуск (выбор пользователя)"
+  fi
+
+  local agents_generator="$target_dir/scripts/generate-agents-md.sh"
+  if [[ -f "$agents_generator" ]]; then
+    log "Generating AGENTS.md in project root..."
+    bash "$agents_generator" "$project_root" "$target_dir" \
+      || warn "AGENTS.md generation failed — create manually or run: bash .pi/scripts/generate-agents-md.sh \"\$PWD\" .pi"
+  else
+    warn "scripts/generate-agents-md.sh not found — AGENTS.md not created"
   fi
 
   rm -f "$target_dir/install.sh"

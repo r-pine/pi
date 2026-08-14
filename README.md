@@ -65,7 +65,8 @@ cd /path/to/project && ./pi/install.sh
 4. Ставит пакеты через `pi install -l` (только выбранные)
 5. При отказе от Understory — удаляет skill, compose и example env из шаблона
 6. При выборе Understory — Docker, clone, compose в корень проекта
-7. Удаляет `install.sh` после успешного завершения
+7. Генерирует `AGENTS.md` в корне проекта (сканер стека + команды + pi skills)
+8. Удаляет `install.sh` после успешного завершения
 
 ## После установки
 
@@ -79,7 +80,8 @@ pi
 
 - `.pi/SYSTEM.md` — системный промпт
 - `.pi/skills/` — project-specific skills
-- `AGENTS.md` в корне — краткая шпаргалка для агентов (опционально)
+- `AGENTS.md` в корне — автогенерируется при установке (не перезаписывает существующий)
+- Перегенерация: `PI_AGENTS_FORCE=1 bash .pi/scripts/generate-agents-md.sh "$PWD" .pi`
 
 Skills подключаются в pi: `/skill:<имя>`.
 
