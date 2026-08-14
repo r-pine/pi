@@ -4,10 +4,6 @@ state/
 npm/node_modules/
 npm/package-lock.json
 
-# Understory — cloned source + live memory bundle (paths relative to installed .pi/)
-/understory/
-/understory-memory/
-
 # Local overrides
 trust.json
 auth.json
