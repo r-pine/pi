@@ -1,0 +1,19 @@
+# Understory — agent memory (https://github.com/mitagmio/understory)
+# Managed by .pi bootstrap. Run from project root:
+#   docker compose -f docker-compose.und.yml --env-file .env.understory up -d
+#   docker compose -f docker-compose.und.yml --env-file .env.understory logs -f
+
+services:
+  understory:
+    build:
+      context: .pi/understory
+      dockerfile: Dockerfile
+    ports:
+      - "${UNDERSTORY_PORT:-3800}:3800"
+    volumes:
+      - ./.pi/understory-memory:/bundle
+    env_file:
+      - .env.understory
+    environment:
+      BUNDLE_ROOT: /bundle
+    restart: unless-stopped
